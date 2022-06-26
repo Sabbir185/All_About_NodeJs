@@ -20,9 +20,9 @@ app.get('/api/courses/:year/:month', (req, res) => {
 
 
 app.get('/api/course/:id', (req, res) => {
-    const crs = courses.find( c => c.id === parseInt(req.params.id));
-    if(!crs) res.status(404).send("Course not found, 404!")
-    res.send( crs );
+    const course = courses.find( c => c.id === parseInt(req.params.id));
+    if(!course) return res.status(404).send("Course not found, 404!")
+    res.send( course );
 })
 
 // POST
@@ -34,9 +34,8 @@ app.post('/api/courses', (req, res) => {
 
     const result = schema.validate(req.body)
    
-    if(result.error) {
-        res.status(400).send( result.error.details[0].message )
-    }
+    if(result.error) return res.status(400).send( result.error.details[0].message )
+
 
     const course = {
         id: courses.length + 1,
@@ -47,6 +46,53 @@ app.post('/api/courses', (req, res) => {
 
     res.send( course );
 })
+
+
+// PUT
+app.put('/api/course/update/:id', (req, res) => {
+    // lookup the course
+    // if not existing, return 404
+    const course = courses.find( c => c.id === parseInt(req.params.id));
+    if(!course) return res.status(404).send("Course not found, 404!")
+
+    // Validate
+    // if invalid, return 400-bad request
+    // const schema = Joi.object({
+    //     name: Joi.string().min(3).required()
+    // })
+    // const result = schema.validate(req.body, schema)
+
+    const { error }  = validateCourse(req.body);
+    if(error) return res.status(400).send(error.details[0].message)
+
+    // Update course
+    // return the update course
+    course.name = req.body.name;
+    res.send(course);
+});
+
+
+// delete
+app.delete('/api/course/delete/:id', (req, res) => {
+    const course = courses.find( c => c.id === parseInt(req.params.id));
+    if(!course) return res.status(404).send("Course not found, 404!")
+
+    const index = courses.indexOf(course);
+    courses.splice(index, 1);
+
+    res.send(course)
+})
+
+
+// utilities
+function validateCourse(course) {
+    const schema = Joi.object({
+        name: Joi.string().min(3).required()
+    });
+
+    return schema.validate(course)
+}
+
 
 
 const port = process.env.PORT || 3000; // try export PORT=5000
