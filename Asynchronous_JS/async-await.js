@@ -1,5 +1,5 @@
 const paymentSuccess = true;
-const mark = 55;
+const mark = 95;
 
 
 const enroll = () => {
@@ -47,25 +47,21 @@ const getCertificate = () => {
 }
 
 
-// promise calling or consuming code
-// enroll holds promise, bz it return a promise
-enroll()
-    .then( courseProgress )    // for resolve, next function is deserved
-    .then( getCertificate )   // again for resolve, next function is deserved
-    .then( data => {         // now, resolve() return some data
+
+// async-await, nothing but a system of Promise calling 
+// or consuming code of Promise -> then-catch
+async function course() {
+    try {
+
+        await enroll();
+        await courseProgress();
+        const data = await getCertificate();
+
         console.log(data)
-
-    }).catch( error => {    // for error handling of then chain
-
+        
+    } catch (error) {
         console.log(error)
-    })
+    }
+}
 
-
-
-
-// Promise short-cut and more information
-// execute first, after synchronous code
-const pro = Promise.resolve('This is just resolve of promise technique..');
-pro.then(d => console.log(d))
-
-console.log('This is synchronous code...')
+course();
