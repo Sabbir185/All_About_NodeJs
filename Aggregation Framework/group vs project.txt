@@ -1,0 +1,9 @@
+	
+	1. Group is for grouping multiple documents into one document. 
+	Whereas project is a one to one relation, you get one document and then you will return one document, that one document we'll just have changed.
+
+	2. So for group, you have multiple documents and you return one grouped by one or more categories of your choice. And then also with any new fields with some         summary, well statistics or summary calculations.
+	In projection, you have a one to one relation.
+
+	3. So in grouping, you do things like summing, counting, averaging and so on.
+	In projection phases, you transform a single document, you add new fields and so on.
