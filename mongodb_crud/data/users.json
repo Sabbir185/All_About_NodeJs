@@ -1,0 +1,85 @@
+[{
+  "_id": {
+    "$oid": "6308e6b761ecc36184402129"
+  },
+  "name": "Sabbir",
+  "hobbies": [
+    {
+      "title": "Sport",
+      "frequency": 2,
+      "highFrequency": true
+    },
+    {
+      "title": "Cooking",
+      "frequency": 3
+    }
+  ],
+  "phone": "01725151578",
+  "isSporty": true
+},{
+  "_id": {
+    "$oid": "6308e6b761ecc3618440212a"
+  },
+  "name": "Motiur",
+  "hobbies": [
+    {
+      "title": "Sport",
+      "frequency": 2,
+      "highFrequency": true
+    },
+    {
+      "title": "Blogging",
+      "frequency": 2
+    }
+  ],
+  "phone": "01965062500",
+  "isSporty": true
+},{
+  "_id": {
+    "$oid": "6308e6b761ecc3618440212b"
+  },
+  "name": "Kiron",
+  "hobbies": [
+    {
+      "title": "Smoking",
+      "frequency": 5
+    },
+    {
+      "title": "Cooking",
+      "frequency": 3
+    }
+  ],
+  "phone": 1725151578,
+  "age": 29.700000000000003,
+  "isSporty": false
+},{
+  "_id": {
+    "$oid": "6312d81a33641dfaa7e73d00"
+  },
+  "name": "Mahbub",
+  "age": "28",
+  "hobbies": [
+    {
+      "title": "Foody",
+      "frequency": 5
+    }
+  ],
+  "isSporty": true
+},{
+  "_id": {
+    "$oid": "6312dc350cb18ec92832950a"
+  },
+  "name": "Nazib",
+  "age": 23,
+  "hobbies": [
+    {
+      "title": "Sport",
+      "frequency": 1
+    },
+    {
+      "title": "Foody",
+      "frequency": 2
+    }
+  ],
+  "isSporty": true
+}]
