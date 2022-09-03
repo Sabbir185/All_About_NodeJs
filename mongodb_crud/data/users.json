@@ -61,7 +61,27 @@
   "hobbies": [
     {
       "title": "Foody",
-      "frequency": 5
+      "frequency": 4
+    },
+    {
+      "title": "Walking",
+      "frequency": 2
+    },
+    {
+      "title": "Hiking",
+      "frequency": 2
+    },
+    {
+      "title": "Hiking",
+      "frequency": 2
+    },
+    {
+      "title": "Dating",
+      "frequency": 1
+    },
+    {
+      "title": "Good Wine",
+      "frequency": 1
     }
   ],
   "isSporty": true
@@ -74,11 +94,11 @@
   "hobbies": [
     {
       "title": "Sport",
-      "frequency": 1
+      "frequency": 0
     },
     {
       "title": "Foody",
-      "frequency": 2
+      "frequency": 1
     }
   ],
   "isSporty": true

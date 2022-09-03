@@ -95,16 +95,16 @@ db.users.updateOne(
 
 // filtering part 1
 // using $and -> if sub-documents contains this then show us
-db.users.find({$and: [{"hobbies.title": "Sport"},{"hobbies.frequency": 2}]})  
+db.users.find({ $and: [{ "hobbies.title": "Sport" }, { "hobbies.frequency": 2 }] })
 // this filter query in this case is not perfect, rather than....
 
 // use $elemMatch -> here frequency is related on Sport -> exact match for Sport and frequency
-db.users.find({hobbies: {$elemMatch: {title: "Sport", frequency: {$gte: 2}}} })  
+db.users.find({ hobbies: { $elemMatch: { title: "Sport", frequency: { $gte: 2 } } } })
 
 // updating part 2
 db.users.updateMany(
-    {hobbies: {$elemMatch: {title: "Sport", frequency: {$gte: 2}}} },
-    {$set: {"hobbies.$.highFrequency": true}}
+    { hobbies: { $elemMatch: { title: "Sport", frequency: { $gte: 2 } } } },
+    { $set: { "hobbies.$.highFrequency": true } }
 )
 
 // ** end
@@ -112,6 +112,46 @@ db.users.updateMany(
 
 // Update all sub-document specific field of array
 db.users.updateMany(
-    {"hobbies.title": 'Foody'},
-    {$inc: {"hobbies.$[].frequency": -1}}
+    { "hobbies.title": 'Foody' },
+    { $inc: { "hobbies.$[].frequency": -1 } }
+)
+
+
+// insert filed or object into array
+// for this, $push keyword is used
+// single object insert
+db.users.updateOne(
+    { name: 'Mahbub' },
+    { $push: { hobbies: { title: 'Walking', frequency: 2 } } }
+)
+
+// multiple object or field insert into an array
+// $each keyword is used for that
+// you can sort or slice, before save into database with $each
+db.users.updateOne(
+    { name: 'Mahbub' },
+    { $push: { hobbies: { $each: [{ title: 'Good Wine', frequency: 1 }, { title: 'Hiking', frequency: 2 }], $sort: { frequency: -1 } } } },
+)
+
+
+// $addToSet --> similar to push --> but push allow duplicate value/object
+// but addToSet do not allow same value in the array
+db.users.updateOne(
+    { name: 'Mahbub' },
+    { $addToSet: { hobbies: { title: 'Hiking', frequency: 2 } } } ,
+)
+
+
+// pull or remove anythings from array
+// $pull is used
+db.users.updateOne(
+    { name: 'Mahbub' },
+    { $pull: { hobbies: { title: 'Hiking', frequency: 2 } } }
+)
+
+// we can remove element from first or last position from array
+// last element 1, first element -1
+db.users.updateOne(
+    { name: 'Mahbub' },
+    { $pop: { hobbies: 1 } }
 )
